@@ -1,0 +1,70 @@
+<div class="container">
+
+  <div class="jumbotron text-center">
+    <p class="lead">
+      Welcome to Albelli Blog
+    </p>
+    <p class="animated infinite" ng-show="!vm.show" ng-class="vm.classAnimation">
+      <button type="button" ng-show="!vm.show" class="btn btn-lg btn-success" ng-click="vm.showToastr()">New Post</button>
+    </p>
+
+    <div class="row">
+      <div ng-show="vm.loading" class="loader col-md-offset-5"></div>
+    </div>
+
+    <form ng-show="vm.show" name="newPost" id="newPost" ng-submit="vm.submitForm(newPost.$valid)" novalidate> 
+
+        <div ng-class="{ 'has-error' : newPost.title.$invalid && !newPost.title.$pristine }" class="form-group">
+            <label class="control-label" for="title">Title</label>
+            <input class="form-control" id="title" name="title" type="text" ng-model="vm.post.title" ng-required="true"
+                   placeholder="">
+            <p ng-show="newPost.title.$invalid" class="help-block">Title is required.</p>
+        </div>
+        <hr>
+
+        <div ng-class="{ 'has-error' : newPost.content.$invalid && !newPost.content.$pristine }" class="form-group">
+            <label class="control-label" for="content">Content</label>
+            <textarea class="form-control" id="content" name="content" ng-model="vm.post.content" ></textarea>
+            <p ng-show="newPost.content.$invalid" class="help-block">Content is required.</p>
+        </div>
+        <hr>
+
+        <div ng-class="{ 'has-error' : newPost.image.$invalid && !newPost.image.$pristine }" class="form-group">
+            <label class="control-label" for="image">Image</label>
+            <input class="form-control" id="image" name="image" type="file" ng-required="!vm.post.content" ng-model="vm.post.image" >
+            <p ng-show="newPost.image.$invalid" class="help-block">If no image selected the content is required.</p>
+        </div>
+
+
+
+        <div ng-class="{ 'has-error' : newPost.email.$invalid && !newPost.email.$pristine }" class="form-group">
+            <label class="control-label" for="email">Email</label>
+            <input class="form-control" id="email" name="email" type="email" ng-model="vm.post.email" ng-required="true"
+                   placeholder="">
+
+            <p ng-show="newPost.email.$invalid" class="help-block">Email is required.</p>
+        </div>
+        <hr>
+
+        
+        <button type="submit" class="btn btn-lg btn-success">
+            Save
+        </button>
+
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="post in vm.posts">
+      <div class="thumbnail">
+        <img class="pull-right" ng-src="assets/images/{{ post.logo }}" alt="{{ post.title }}">
+        <div class="caption">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.description }}</p>
+          <p><a ng-href="{{post.url}}">{{ post.url }}</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
