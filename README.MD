@@ -71,6 +71,5 @@ https://github.com/angular/angular-cli#generating-a-route
 
 ## Vendor Services and References
 
-Geonames: http://www.geonames.org/
 Dingo API: https://github.com/dingo/api/wiki
 Laravel CORS: https://github.com/barryvdh/laravel-cors
